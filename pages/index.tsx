@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import { NextPage } from 'next';
 import Link from 'next/link'
 import Head from 'next/head'
 
-const Home = () => 
+const Home: NextPage<{}> = () => 
 // useEffect(() => {
 //   fetch('/api/hello')
 //     .then(res => res.json())

@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { createPost } from '../lib/api'
 
-const CreatePost = () => {
-  const [postContent, setPostContent] = useState('')
+const CreatePost: React.FC<{}> = () => {
+  const [postContent, setPostContent] = useState<string>('')
   const router = useRouter()
   const { id } = router.query
-  const handleSubmitNewPost = async e => {
+  const handleSubmitNewPost = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     if (postContent === '') return
     const res = await createPost(id, postContent)

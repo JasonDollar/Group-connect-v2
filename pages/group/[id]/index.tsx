@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { NextPage } from 'next'
 import cookies from 'next-cookies'
 import { useRouter } from 'next/router'
 import { getSingleGroupInfo } from '../../../lib/api'
 import Posts from '../../../components/Posts'
 import CreatePost from '../../../components/CreatePost'
 
-const groupPage = ({ groupInfo }) => {
+const groupPage: NextPage<{groupInfo: any}> = ({ groupInfo }) => {
   // const [groupInfo, setGroupInfo] = useState({
   //   name: '',
   // })

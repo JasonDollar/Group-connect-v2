@@ -1,20 +1,30 @@
 import React, { useState } from 'react'
+import { NextPage } from 'next';
 import { loginUser } from '../lib/api'
 
-const signup = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const handleSubmit = async e => {
+interface Error {
+  error?: {
+    response?: {
+      data?: {
+        message?: string
+      }
+    }
+  }
+}
+
+const signup: NextPage<{}> = () => {
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [error, setError] = useState<string>('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-
       const res = await loginUser(email, password)
       console.log(res)
       localStorage.setItem('jwt', res.data.token)
     } catch (e) {
-      console.log(e)
-      setError(e)
+      console.log(e.message)
+      setError(e.message)
     }
   }
   return (
@@ -29,7 +39,7 @@ const signup = () => {
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
         </div>
-        {error && <p>{error.response.data.message}</p>}
+        {error && <p>{error}</p>}
         <button type="submit">Submit</button>
       </form>
     </div>

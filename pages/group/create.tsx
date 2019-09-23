@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { NextPage } from 'next';
 import Router from 'next/router'
 import { createGroup } from '../../lib/api'
 
-const create = () => {
-  const [groupName, setGroupName] = useState('')
-  const [isPrivate, toggePrivate] = useState(false)
-  const handleSubmit = async e => {
+const create: NextPage<{}> = () => {
+  const [groupName, setGroupName] = useState<string>('')
+  const [isPrivate, toggePrivate] = useState<boolean>(false)
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const res = await createGroup(groupName, isPrivate)
     console.log(res)

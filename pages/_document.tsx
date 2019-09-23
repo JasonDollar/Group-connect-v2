@@ -7,7 +7,7 @@ import { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props => sheet.collectStyles(
+    const page = renderPage((App: any) => (props: any) => sheet.collectStyles(
       <Fragment>
         <App {...props} />
       </Fragment>,

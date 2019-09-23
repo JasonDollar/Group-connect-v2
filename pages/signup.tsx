@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { NextPage } from 'next'
 import { createAccount } from '../lib/api'
 
-const signup = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
-  const handleSubmit = async e => {
+const signup: NextPage<{}> = () => {
+  const [name, setName] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [passwordConfirm, setPasswordConfirm] = useState<string>('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = await createAccount(name, email, password, passwordConfirm)
     console.log(data)

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import cookies from 'next-cookies'
 
 const host = process.env.PROD_URL || 'http://localhost:3000'
@@ -8,20 +8,20 @@ export const getAllGroups = async () => {
   return res
 }
 
-export const getSingleGroupInfo = async (id, jwtCookieString) => {
+export const getSingleGroupInfo = async (id: string | string[], jwtCookieString: string | undefined) => {
   const res = await axios.get(`${host}/api/groups/${id}`, { headers: { Cookie: 'jwt=' + jwtCookieString } })
   console.log(res.data)
   return res
 }
 
-export const createAccount = async (name, email, password, passwordConfirm) => {
+export const createAccount = async (name: string, email: string, password: string, passwordConfirm: string) => {
   const data = await axios.post('/api/users/create', { 
     name, email, password, passwordConfirm,
   })
   return data
 }
 
-export const loginUser = async (email, password) => {
+export const loginUser = async (email: string, password: string) => {
   const data = await axios.post(`${host}/api/users/login`, { 
     email, password,
   }, {
@@ -30,7 +30,7 @@ export const loginUser = async (email, password) => {
   return data
 }
 
-export const createGroup = async (name, isPrivate) => {
+export const createGroup = async (name:string, isPrivate: boolean) => {
   const data = await axios.post(`${host}/api/groups`, { 
     name, private: isPrivate,
   }, { withCredentials: true })
@@ -38,12 +38,12 @@ export const createGroup = async (name, isPrivate) => {
   return data
 }
 
-export const fetchGroupPosts = async groupId => {
+export const fetchGroupPosts = async (groupId:string | string[]) => {
   const data = await axios.get(`${host}/api/posts/${groupId}`)
   return data
 }
 
-export const createPost = async (groupId, text) => {
+export const createPost = async (groupId:string | string[], text:string) => {
   const data = await axios.post(`${host}/api/posts/${groupId}/create`, { text }, { withCredentials: true })
   return data
 }

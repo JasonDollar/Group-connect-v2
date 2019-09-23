@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { NextPage } from 'next';
 import Link from 'next/link'
 import axios from 'axios'
 import { getAllGroups } from '../../lib/api'
 
-const GroupPage = props => (
+const GroupPage: NextPage<{groups: any}> = ({groups}) => (
     <div>
       <p>groups all</p>
       <ul>
 
-        {props.groups && props.groups.map(item => (
+        {groups && groups.map((item: any) => (
           <li key={item.id}>
             <Link
               
@@ -27,7 +28,7 @@ const GroupPage = props => (
           </li>
         ))}
       </ul>
-      {/* {props.error && <p>{props.error.response.data.message}</p>} */}
+      {/* {error && <p>{error.response.data.message}</p>} */}
     </div>
 )
 
