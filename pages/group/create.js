@@ -8,11 +8,11 @@ const create = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     const res = await createGroup(groupName, isPrivate)
-    console.log(res)
+
     if (res.statusText = 'Created') {
       Router.push({
-        pathname: `/group/${res.data.data.hashid}`,
-        query: { n: res.data.data.slug },
+        pathname: `/group/${res.data.group.hashid}`,
+        query: { n: res.data.group.slug },
       })
     }
   }

@@ -9,7 +9,7 @@ const signup = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     const data = await createAccount(name, email, password, passwordConfirm)
-    console.log(data)
+
   }
   return (
     <div>

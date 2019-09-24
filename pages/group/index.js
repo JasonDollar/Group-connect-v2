@@ -4,7 +4,7 @@ import axios from 'axios'
 import { getAllGroups } from '../../lib/api'
 
 const GroupPage = props => (
-    <div>
+  <div>
       <p>groups all</p>
       <ul>
 
@@ -20,7 +20,7 @@ const GroupPage = props => (
             >
               <a>
 
-              {item.name}
+                {item.name}
               </a>
             </Link>
 
@@ -40,7 +40,7 @@ GroupPage.getInitialProps = async () => {
     const res = await getAllGroups()
     // console.log(res)
     // return res
-    return { groups: res.data ? res.data.data : null, error: null }
+    return { groups: res.data ? res.data.groups : null, error: null }
 
   } catch (e) {
     return { error: e, groups: null }

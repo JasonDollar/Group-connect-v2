@@ -5,13 +5,14 @@ import { getSingleGroupInfo } from '../../../lib/api'
 import Posts from '../../../components/Posts'
 import CreatePost from '../../../components/CreatePost'
 
+
 const groupPage = ({ groupInfo }) => {
   // const [groupInfo, setGroupInfo] = useState({
   //   name: '',
   // })
   const router = useRouter()
   const { id } = router.query
-  console.log(id)
+  console.log(groupInfo)
   
   // useEffect(() => {
   //   getSingleGroupInfo(id)
@@ -24,7 +25,7 @@ const groupPage = ({ groupInfo }) => {
   // console.log(groupInfo)
   return (
     <div>
-      <h1>{groupInfo && groupInfo.data.name}</h1>
+      <h1>{groupInfo && groupInfo.name}</h1>
       <CreatePost />
       <Posts groupId={id} />
     </div>
@@ -36,12 +37,13 @@ export default groupPage
 groupPage.getInitialProps = async ctx => {
   // console.log(req.headers.cookie)
   const { jwt } = cookies(ctx)
-  console.log(jwt)
   const res = await getSingleGroupInfo(ctx.query.id, jwt)
   // const data = res.json()
   // console.log(res.data)
+
   if (res.data) {
-    return { groupInfo: res.data }
+
+    return { groupInfo: res.data.group }
 
   }
   return { groupInfo: null }

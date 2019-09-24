@@ -7,11 +7,11 @@ const Posts = ({ groupId }) => {
   useEffect(() => {
     fetchGroupPosts(groupId).then(res => {
       if (res.data) {
-        setPosts(res.data.data)
+        setPosts(res.data.posts)
       }
     })
   }, [])
-  const updatePosts = newPost => setPosts(...posts, newPost)
+  
   return (
     <div>
       {posts.length > 0 && posts.map(item => <SinglePost key={item._id} post={item} />)}

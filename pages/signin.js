@@ -10,10 +10,10 @@ const signup = () => {
     try {
 
       const res = await loginUser(email, password)
-      console.log(res)
+
       localStorage.setItem('jwt', res.data.token)
     } catch (e) {
-      console.log(e)
+
       setError(e)
     }
   }
