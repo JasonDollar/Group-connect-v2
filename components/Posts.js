@@ -6,11 +6,11 @@ const Posts = ({ groupId }) => {
   const [posts, setPosts] = useState([])
   useEffect(() => {
     fetchGroupPosts(groupId).then(res => {
-      if (res.data) {
+      if (res.statusText === 'OK') {
         setPosts(res.data.posts)
       }
     })
-  }, [])
+  }, [groupId])
   
   return (
     <div>

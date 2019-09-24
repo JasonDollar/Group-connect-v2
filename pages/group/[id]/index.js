@@ -12,17 +12,17 @@ const groupPage = ({ groupInfo }) => {
   // })
   const router = useRouter()
   const { id } = router.query
-  console.log(groupInfo)
+  console.log(id)
   
   // useEffect(() => {
   //   getSingleGroupInfo(id)
   //     .then(res => {
   //       console.log(res)
-  //       setGroupInfo(res.data.data)
+  //       setGroupInfo(res.data.group)
   //     })
 
   // }, [])
-  // console.log(groupInfo)
+  console.log(groupInfo)
   return (
     <div>
       <h1>{groupInfo && groupInfo.name}</h1>
@@ -36,15 +36,21 @@ export default groupPage
 
 groupPage.getInitialProps = async ctx => {
   // console.log(req.headers.cookie)
-  const { jwt } = cookies(ctx)
-  const res = await getSingleGroupInfo(ctx.query.id, jwt)
-  // const data = res.json()
-  // console.log(res.data)
+  try {
+    const { jwt } = cookies(ctx)
+    const res = await getSingleGroupInfo(ctx.query.id, jwt)
+    // console.log(res)
+    // const data = res.json()
+    console.log(res.data)
+  
+    if (res.statusText === 'OK') {
+  
+      return { groupInfo: res.data.group }
+  
+    }
+  } catch (e) {
+    return { groupInfo: null }
+  } 
 
-  if (res.data) {
 
-    return { groupInfo: res.data.group }
-
-  }
-  return { groupInfo: null }
 }
