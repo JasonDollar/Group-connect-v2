@@ -1,5 +1,6 @@
 import React from 'react'
 import App, { Container } from 'next/app'
+import { PostProvider } from '../lib/PostProvider'
 // import Page from '../components/Page'
 
 class MyApp extends App {
@@ -17,7 +18,9 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
+      <PostProvider>
         <Component {...pageProps} />
+      </PostProvider>
     )
   }
 }
