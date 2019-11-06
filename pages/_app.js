@@ -1,7 +1,8 @@
 import React from 'react'
-import App, { Container } from 'next/app'
+import App from 'next/app'
 import { PostProvider } from '../lib/PostProvider'
 // import Page from '../components/Page'
+
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

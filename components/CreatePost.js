@@ -12,7 +12,11 @@ const CreatePost = () => {
     e.preventDefault()
     if (postContent === '') return
     const res = await createPost(id, postContent)
-    addPost(res.data.post)
+    console.log(res)
+    if (res.statusText === 'Created') {
+      setPostContent('')
+      addPost(res.data.post)
+    }
   }
   return (
     <form onSubmit={handleSubmitNewPost}>
