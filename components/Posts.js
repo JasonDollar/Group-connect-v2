@@ -8,8 +8,11 @@ const Posts = ({ groupId, groupPosts }) => {
   const { posts, setPosts } = useContext(PostContext)
   // console.log(posts)
   useEffect(() => {
-    setPosts(groupPosts)
-  }, [])
+    if (groupPosts) {
+
+      setPosts(groupPosts)
+    }
+  }, [groupPosts])
   // useEffect(() => {
   //   fetchGroupPosts(groupId).then(res => {
   //     if (res.statusText === 'OK') {

@@ -23,6 +23,9 @@ const groupPage = ({ groupInfo }) => {
 
   // }, [])
   // console.log(groupInfo)
+  if (!groupInfo) {
+    return <div>Error</div>
+  }
   return (
     <div>
       <h1>{groupInfo && groupInfo.name}</h1>
