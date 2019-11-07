@@ -1,7 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
-import { Container } from 'semantic-ui-react'
+// import { Container } from 'semantic-ui-react'
+import styled from 'styled-components'
 import TopMenu from './TopMenu'
+
+const Container = styled.div`
+  width: 100%;
+  max-width: 114rem;
+  margin: 0 auto;
+  padding: 1rem;
+`
 
 const Layout = ({ children }) => {
   's'
