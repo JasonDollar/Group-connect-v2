@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>{this.props.styleTags}</Head>
-        <body style={{ fontFamily: 'sans-serif' }}>
+        <body>
           <Main />
           <NextScript />
         </body>

@@ -12,7 +12,7 @@ const CreatePost = () => {
     e.preventDefault()
     if (postContent === '') return
     const res = await createPost(id, postContent)
-    console.log(res)
+    // console.log(res)
     if (res.statusText === 'Created') {
       setPostContent('')
       addPost(res.data.post)

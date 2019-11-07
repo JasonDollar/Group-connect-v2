@@ -1,8 +1,9 @@
 import React from 'react'
 import App from 'next/app'
+import { ThemeProvider } from 'styled-components'
 import { PostProvider } from '../lib/PostProvider'
-// import Page from '../components/Page'
-
+import Layout from '../components/Layout/Layout'
+import theme from '../components/styles/theme'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -19,9 +20,15 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <PostProvider>
-        <Component {...pageProps} />
-      </PostProvider>
+      <ThemeProvider theme={theme.light}>
+        <PostProvider>
+          <Layout>
+            <Component {...pageProps} />
+
+          </Layout>
+        </PostProvider>
+
+      </ThemeProvider>
     )
   }
 }

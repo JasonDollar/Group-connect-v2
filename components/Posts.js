@@ -3,18 +3,21 @@ import { fetchGroupPosts } from '../lib/api'
 import SinglePost from './SinglePost'
 import { PostContext } from '../lib/PostProvider'
 
-const Posts = ({ groupId }) => {
-  // const [posts, setPosts] = useState([])
+const Posts = ({ groupId, groupPosts }) => {
+
   const { posts, setPosts } = useContext(PostContext)
-  console.log(posts)
+  // console.log(posts)
   useEffect(() => {
-    fetchGroupPosts(groupId).then(res => {
-      if (res.statusText === 'OK') {
-        // console.log(res.data.posts)
-        setPosts(res.data.posts)
-      }
-    })
-  }, [groupId])
+    setPosts(groupPosts)
+  }, [])
+  // useEffect(() => {
+  //   fetchGroupPosts(groupId).then(res => {
+  //     if (res.statusText === 'OK') {
+  //       // console.log(res.data.posts)
+  //       setPosts(res.data.posts)
+  //     }
+  //   })
+  // }, [groupId])
   
   return (
     <div>

@@ -22,12 +22,12 @@ const groupPage = ({ groupInfo }) => {
   //     })
 
   // }, [])
-  console.log(groupInfo)
+  // console.log(groupInfo)
   return (
     <div>
       <h1>{groupInfo && groupInfo.name}</h1>
       <CreatePost />
-      <Posts groupId={id} />
+      <Posts groupId={id} groupPosts={groupInfo.posts} />
     </div>
   )
 }
@@ -41,10 +41,10 @@ groupPage.getInitialProps = async ctx => {
     const res = await getSingleGroupInfo(ctx.query.id, jwt)
     // console.log(res)
     // const data = res.json()
-    console.log(res.data)
+    // console.log(res.data)
   
     if (res.statusText === 'OK') {
-  
+      // console.log(res.data.group)
       return { groupInfo: res.data.group }
   
     }
