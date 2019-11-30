@@ -29,7 +29,8 @@ const signup = () => {
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
         </div>
-        {error && <p>{error.response.data.message}</p>}
+        {error && error.response && <p>{error.response.data.message}</p>}
+        {error && error.message && <p>{error.message}</p>}
         <button type="submit">Submit</button>
       </form>
     </div>

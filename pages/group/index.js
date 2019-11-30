@@ -37,8 +37,7 @@ export default GroupPage
 GroupPage.getInitialProps = async () => {
   try {
     const res = await getAllGroups()
-    // console.log(res)
-    // return res
+
     return { groups: res.data ? res.data.groups : null, error: null }
 
   } catch (e) {

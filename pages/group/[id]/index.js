@@ -7,22 +7,10 @@ import CreatePost from '../../../components/CreatePost'
 
 
 const groupPage = ({ groupInfo }) => {
-  // const [groupInfo, setGroupInfo] = useState({
-  //   name: '',
-  // })
   const router = useRouter()
   const { id } = router.query
-  console.log(id)
-  
-  // useEffect(() => {
-  //   getSingleGroupInfo(id)
-  //     .then(res => {
-  //       console.log(res)
-  //       setGroupInfo(res.data.group)
-  //     })
 
-  // }, [])
-  // console.log(groupInfo)
+
   if (!groupInfo) {
     return <div>Error</div>
   }
