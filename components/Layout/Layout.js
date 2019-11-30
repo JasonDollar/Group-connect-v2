@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 // import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
 import NProgress from 'nprogress'
 import TopMenu from './TopMenu'
+import SideProfile from '../SideProfile/SideProfile'
+import { getUserInfo } from '../../lib/api'
 
 
 Router.onRouteChangeStart = () => NProgress.start()
@@ -16,11 +18,23 @@ const Container = styled.div`
   max-width: 114rem;
   margin: 0 auto;
   padding: 1rem;
+  display: flex;
 `
 
-const Layout = ({ children }) => {
-  's'
+const Layout = ({ children, ...rest }) => {
+  const [user, setUser] = useState(null)
+  const fetUserInfo = async () => {
+    const res = await getUserInfo()
+    // console.log(res)
+    // console.log(res)
+    if (res.statusText === 'OK') {
+      setUser(res.data.user)
 
+    }
+  }
+  useEffect(() => {
+    fetUserInfo()
+  }, [])
   return (
     <>
       <Head>
@@ -36,6 +50,7 @@ const Layout = ({ children }) => {
       </Head>
       <TopMenu />
       <Container>
+        <SideProfile user={user} />
         {children}
       </Container>
     </>
