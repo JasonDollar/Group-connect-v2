@@ -1,8 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 // import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
+import NProgress from 'nprogress'
 import TopMenu from './TopMenu'
+
+
+Router.onRouteChangeStart = () => NProgress.start()
+Router.onRouteChangeComplete = () => NProgress.done()
+Router.onRouteChangeError = () => NProgress.done()
 
 const Container = styled.div`
   width: 100%;
@@ -25,7 +32,7 @@ const Layout = ({ children }) => {
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossOrigin="anonymous"
         /> */}
-        {/* <link rel="stylesheet" href="styles.css" /> */}
+        <link rel="stylesheet" href="nprogress.css" />
       </Head>
       <TopMenu />
       <Container>

@@ -3,6 +3,9 @@ import Document from 'next/document'
 import { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+:root {
+  --progressBar: orangered;
+}
 *, 
 *::after,
 *::before {
