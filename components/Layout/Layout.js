@@ -23,20 +23,10 @@ const Container = styled.div`
   display: flex;
 `
 
-const Layout = ({ children, ...rest }) => {
-  const [user, setUser] = useState(null)
+const Layout = ({ children }) => {
   const dispatch = useDispatch()
-  const fetUserInfo = async () => {
-    const res = await getUserInfo()
-    // console.log(res)
-    // console.log(res)
-    if (res.statusText === 'OK') {
-      setUser(res.data.user)
 
-    }
-  }
   useEffect(() => {
-    fetUserInfo()
     dispatch(fetchUserInfo())
   }, [])
   return (

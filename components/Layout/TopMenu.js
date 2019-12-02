@@ -24,8 +24,8 @@ const TopMenu = () => {
       {menuOpen && <Backdrop onClick={() => setMenuOpen(false)} />}
       <Nav className={menuOpen ? 'open' : ''} onClick={handleLinkClick}>
         <NavItem>
-          <Link href="/group">
-            <a>Groups</a>
+          <Link href="/">
+            <a>Home</a>
           </Link>
         </NavItem>
         <NavItem>
