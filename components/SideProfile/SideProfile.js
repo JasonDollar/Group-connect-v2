@@ -1,5 +1,8 @@
 import React, { useEffect, memo } from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { parseCookies, setCookie, destroyCookie } from 'nookies'
+import { selectCurrentUser, selectUser } from '../../redux/user/user.selectors'
 
 
 const Container = styled.div`
@@ -8,19 +11,29 @@ const Container = styled.div`
   background: ${props => props.theme.orangeColor};
 `
 
-const SideProfile = ({ user }) => {
-  console.log('user', user)
-  if (!user) {
+const SideProfile = () => {
+  const { loading, error } = useSelector(state => state.user)
+  const currentUser = useSelector(selectCurrentUser)
+  console.log(currentUser, loading)
+  if (loading) {
     return (
       <Container>
-        No user
+        Loading
+      </Container>
+    )
+  }
+  if (!currentUser) {
+    return (
+      <Container>
+        No currentUser
+        {error && error}
       </Container>
     )
   }
 
   return (
     <Container>
-      {user.name}
+      {currentUser.name}
     </Container>
   )
 }

@@ -1,0 +1,33 @@
+import axios from '../../lib/api'
+import actionTypes from './user.types'
+import baseUrl from '../../lib/baseUrl'
+
+const fetchUserInfoStart = () => ({
+  type: actionTypes.FETCH_USER_INFO_START,
+})
+
+const fetchUserInfoSuccess = payload => ({
+  type: actionTypes.FETCH_USER_INFO_SUCCESS,
+  payload,
+})
+
+const fetchUserInfoFailure = payload => ({
+  type: actionTypes.FETCH_USER_INFO_FAILURE,
+  payload,
+})
+
+export const fetchUserInfo = () => async dispatch => {
+  dispatch(fetchUserInfoStart())
+  try {
+
+    const res = await axios.get(`${baseUrl}/api/v_1/users/me`, {
+      withCredentials: true,
+    })
+    console.log('reducer', res)
+    if (res.statusText !== 'OK') throw new Error(res.statusText)
+    return dispatch(fetchUserInfoSuccess(res.data.user))
+  } catch (e) {
+    console.log(e.message)
+    dispatch(fetchUserInfoFailure(e.message))
+  }
+}

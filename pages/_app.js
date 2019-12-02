@@ -1,10 +1,12 @@
 import React from 'react'
 import App from 'next/app'
+import { Provider } from 'react-redux'
 import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import { ThemeProvider } from 'styled-components'
 import { PostProvider } from '../lib/PostProvider'
 import Layout from '../components/Layout/Layout'
 import theme from '../components/styles/theme'
+import withReduxStore from '../lib/with-redux-store'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -22,20 +24,23 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, reduxStore } = this.props
 
     return (
-      <ThemeProvider theme={theme.light}>
-        <PostProvider>
-          <Layout {...pageProps}>
-            <Component {...pageProps} />
+      <Provider store={reduxStore}>
 
-          </Layout>
-        </PostProvider>
+        <ThemeProvider theme={theme.light}>
+          <PostProvider>
+            <Layout {...pageProps}>
+              <Component {...pageProps} />
 
-      </ThemeProvider>
+            </Layout>
+          </PostProvider>
+
+        </ThemeProvider>
+      </Provider>
     )
   }
 }
 
-export default MyApp
+export default withReduxStore(MyApp)

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
+import { useDispatch } from 'react-redux'
 // import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
 import NProgress from 'nprogress'
 import TopMenu from './TopMenu'
 import SideProfile from '../SideProfile/SideProfile'
 import { getUserInfo } from '../../lib/api'
+import { fetchUserInfo } from '../../redux/user/user.actions'
 
 
 Router.onRouteChangeStart = () => NProgress.start()
@@ -23,6 +25,7 @@ const Container = styled.div`
 
 const Layout = ({ children, ...rest }) => {
   const [user, setUser] = useState(null)
+  const dispatch = useDispatch()
   const fetUserInfo = async () => {
     const res = await getUserInfo()
     // console.log(res)
@@ -34,6 +37,7 @@ const Layout = ({ children, ...rest }) => {
   }
   useEffect(() => {
     fetUserInfo()
+    dispatch(fetchUserInfo())
   }, [])
   return (
     <>
@@ -50,7 +54,7 @@ const Layout = ({ children, ...rest }) => {
       </Head>
       <TopMenu />
       <Container>
-        <SideProfile user={user} />
+        <SideProfile />
         {children}
       </Container>
     </>
