@@ -1,8 +1,7 @@
-import React, { useEffect, memo } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { parseCookies, setCookie, destroyCookie } from 'nookies'
-import { selectCurrentUser, selectUser } from '../../redux/user/user.selectors'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
 
 
 const Container = styled.div`
@@ -14,7 +13,7 @@ const Container = styled.div`
 const SideProfile = () => {
   const { loading, error } = useSelector(state => state.user)
   const currentUser = useSelector(selectCurrentUser)
-  console.log(currentUser, loading)
+
   if (loading) {
     return (
       <Container>

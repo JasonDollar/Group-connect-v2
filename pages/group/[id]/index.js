@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { parseCookies, setCookie, destroyCookie } from 'nookies'
+import React from 'react'
+import { parseCookies } from 'nookies'
 import { useRouter } from 'next/router'
 import { getSingleGroupInfo } from '../../../lib/api'
 import Posts from '../../../components/Posts'
@@ -30,12 +30,8 @@ groupPage.getInitialProps = async ctx => {
   try {
     const { jwt } = parseCookies(ctx)
     const res = await getSingleGroupInfo(ctx.query.id, jwt)
-    // console.log(res)
-    // const data = res.json()
-    // console.log(res.data)
-  
+
     if (res.statusText === 'OK') {
-      // console.log(res.data.group)
       return { groupInfo: res.data.group }
   
     }

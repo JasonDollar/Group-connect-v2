@@ -23,11 +23,11 @@ export const fetchUserInfo = () => async dispatch => {
     const res = await axios.get(`${baseUrl}/api/v_1/users/me`, {
       withCredentials: true,
     })
-    console.log('reducer', res)
+    
     if (res.statusText !== 'OK') throw new Error(res.statusText)
     return dispatch(fetchUserInfoSuccess(res.data.user))
   } catch (e) {
-    console.log(e.message)
+    
     dispatch(fetchUserInfoFailure(e.message))
   }
 }

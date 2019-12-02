@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react'
-// import { fetchGroupPosts } from '../lib/api'
 import SinglePost from './SinglePost'
 import { PostContext } from '../lib/PostProvider'
 
