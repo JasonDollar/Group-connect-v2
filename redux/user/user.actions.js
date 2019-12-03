@@ -21,6 +21,10 @@ export const saveUserInfoToStore = payload => ({
   payload,
 })
 
+export const stopLoadingUser = () => ({
+  type: actionTypes.STOP_LOADING,
+})
+
 export const fetchUserInfo = () => async dispatch => {
   dispatch(fetchUserInfoStart())
   try {

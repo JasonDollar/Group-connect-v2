@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import NProgress from 'nprogress'
 import TopMenu from './TopMenu'
 import SideProfile from '../SideProfile/SideProfile'
-import { fetchUserInfo } from '../../redux/user/user.actions'
+import { fetchUserInfo, stopLoadingUser } from '../../redux/user/user.actions'
 
 
 Router.onRouteChangeStart = () => NProgress.start()
@@ -21,11 +21,16 @@ const Container = styled.div`
   display: flex;
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, userToken }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchUserInfo())
+    if (userToken) {
+      dispatch(fetchUserInfo())
+    } else {
+      dispatch(stopLoadingUser())
+    } 
+    
   }, [])
   return (
     <>

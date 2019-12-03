@@ -17,6 +17,8 @@ export default (state = initialState, { type, payload }) => {
     case actionTypes.SAVE_USER_INFO_TO_STORE: {
       return { ...state, currentUser: payload }
     }
+    case actionTypes.STOP_LOADING: 
+      return { ...state, loading: false }
     default:
       return state
   }

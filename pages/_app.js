@@ -31,7 +31,7 @@ class MyApp extends App {
 
         <ThemeProvider theme={theme.light}>
           <PostProvider>
-            <Layout>
+            <Layout {...pageProps}>
               <Component {...pageProps} />
 
             </Layout>
