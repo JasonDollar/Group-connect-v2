@@ -16,6 +16,11 @@ const fetchUserInfoFailure = payload => ({
   payload,
 })
 
+export const saveUserInfoToStore = payload => ({
+  type: actionTypes.SAVE_USER_INFO_TO_STORE,
+  payload,
+})
+
 export const fetchUserInfo = () => async dispatch => {
   dispatch(fetchUserInfoStart())
   try {
@@ -25,7 +30,9 @@ export const fetchUserInfo = () => async dispatch => {
     })
     
     if (res.statusText !== 'OK') throw new Error(res.statusText)
-    return dispatch(fetchUserInfoSuccess(res.data.user))
+    
+    dispatch(fetchUserInfoSuccess())
+    dispatch(saveUserInfoToStore(res.data.user))
   } catch (e) {
     
     dispatch(fetchUserInfoFailure(e.message))
