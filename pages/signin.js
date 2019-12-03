@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
-import { loginUser } from '../lib/api'
+import { useDispatch, useSelector } from 'react-redux'
+import Router from 'next/router'
+import { loginUser } from '../redux/auth/auth.actions'
 
 const signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+
+  const dispatch = useDispatch()
+  const { loading, error: storeError } = useSelector(state => state.auth)
+
   const handleSubmit = async e => {
     e.preventDefault()
-    try {
+    if (!email || !password) return
 
-      const res = await loginUser(email, password)
-
-      localStorage.setItem('jwt', res.data.token)
-    } catch (e) {
-
-      setError(e)
-    }
+    dispatch(loginUser(email, password, Router))
   }
   return (
     <div>
@@ -23,15 +23,14 @@ const signup = () => {
 
         <div>
           <label htmlFor="email">Email:</label>
-          <input type="text" id="email" value={email} onChange={e => setEmail(e.target.value)} />
+          <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
         </div>
         <div>
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
         </div>
-        {error && error.response && <p>{error.response.data.message}</p>}
-        {error && error.message && <p>{error.message}</p>}
-        <button type="submit">Submit</button>
+        {storeError && <p>{storeError}</p>}
+        <button type="submit" disabled={loading}>Submit</button>
       </form>
     </div>
   )
