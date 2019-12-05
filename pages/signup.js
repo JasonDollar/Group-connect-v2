@@ -1,14 +1,28 @@
 import React, { useState } from 'react'
-import { createAccount } from '../lib/api'
+import Router from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { createUserAccount } from '../redux/auth/auth.actions'
 
 const signup = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [componentError, setComponentError] = useState('')
+  const dispatch = useDispatch()
+  const { loading, error: storeError } = useSelector(state => state.auth)
+
   const handleSubmit = async e => {
     e.preventDefault()
-    const data = await createAccount(name, email, password, passwordConfirm)
+    if (!name || !email || !password || !passwordConfirm) {
+      setComponentError('You must fill all fields')
+      // IDEA - add red border for not filled fields
+    } else if (password !== passwordConfirm) {
+      setComponentError('Your password does not match')
+      return
+    }
+    setComponentError('')
+    dispatch(createUserAccount(name, email, password, passwordConfirm, Router))
 
   }
   return (
@@ -30,7 +44,9 @@ const signup = () => {
           <label htmlFor="passwordConfirm">Confirm Password:</label>
           <input type="password" id="passwordConfirm" value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)} />
         </div>
-        <button type="submit">Submit</button>
+        {componentError && <p>{componentError}</p>}
+        {storeError && <p>{storeError}</p>}
+        <button type="submit" disabled={loading}>Submit</button>
       </form>
     </div>
   )

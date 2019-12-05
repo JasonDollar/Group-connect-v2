@@ -36,3 +36,22 @@ export const loginUser = (email, password, router) => async dispatch => {
     dispatch(authFailure(e.message))
   }
 }
+
+export const createUserAccount = (name, email, password, passwordConfirm, router) => async dispatch => {
+  dispatch(authStart())
+  try {
+    const res = await axios.post(`${baseUrl}/api/v_1/users/create`, { 
+      name, email, password, passwordConfirm,
+    })
+    if (res.statusText !== 'OK') {
+      dispatch(authFailure(res.data.message))
+    }
+    if (res.data.user) {
+      dispatch(authSuccess())
+      dispatch(saveUserInfoToStore(res.data.user))
+      router.push('/')
+    }
+  } catch (e) {
+    dispatch(authFailure(e.message))
+  }
+}
