@@ -11,11 +11,8 @@ const GroupPage = props => (
       {props.groups && props.groups.map(item => (
         <li key={item.id}>
           <Link
-              
-            href={{
-              pathname: `/group/${item.hashid}`,
-              query: { n: item.slug },
-            }}
+            as={`/group/${item.hashid}`}
+            href="/group/[id]"
           >
             <a>
 
