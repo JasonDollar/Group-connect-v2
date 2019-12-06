@@ -1,24 +1,28 @@
 import React from 'react'
 import { parseCookies } from 'nookies'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 import { getSingleGroupInfo } from '../../../lib/api'
 import Posts from '../../../components/Posts'
 import CreatePost from '../../../components/CreatePost'
+import { saveGroupPostsToStore } from '../../../redux/posts/posts.actions'
 
 
 const groupPage = ({ groupInfo }) => {
-  const router = useRouter()
-  const { id } = router.query
+  const dispatch = useDispatch()
 
 
   if (!groupInfo) {
     return <div>Error</div>
   }
+  
+  dispatch(saveGroupPostsToStore(groupInfo.posts))
+
   return (
     <div>
       <h1>{groupInfo && groupInfo.name}</h1>
       <CreatePost />
-      <Posts groupId={id} groupPosts={groupInfo.posts} />
+      <Posts />
     </div>
   )
 }

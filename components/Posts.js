@@ -1,25 +1,18 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import SinglePost from './SinglePost'
-import { PostContext } from '../lib/PostProvider'
 
-const Posts = ({ groupId, groupPosts }) => {
 
-  const { posts, setPosts } = useContext(PostContext)
+const Posts = () => {
+  const posts = useSelector(state => state.posts.groupPosts)
 
-  useEffect(() => {
-    if (groupPosts) {
-
-      setPosts(groupPosts)
-    }
-  }, [groupPosts])
-
-  
   return (
     <div>
       {posts && posts.map(item => <SinglePost key={item._id} post={item} />)}
     </div>
   )
 }
+
 
 
 export default Posts
