@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import NProgress from 'nprogress'
 import TopMenu from './TopMenu'
-import SideProfile from '../SideProfile/SideProfile'
 import { fetchUserInfo, stopLoadingUser } from '../../redux/user/user.actions'
 
 
@@ -39,7 +38,6 @@ const Layout = ({ children, userToken }) => {
       </Head>
       <TopMenu />
       <Container>
-        <SideProfile />
         {children}
       </Container>
     </>

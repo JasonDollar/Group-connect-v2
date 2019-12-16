@@ -63,3 +63,28 @@ export const NavButton = styled.button`
   cursor: pointer;
   font-family: inherit; 
 `
+
+export const AvatarContainer = styled.span`
+  width: 3rem;
+  height: 3rem;
+  background: white;
+  border-radius: 50%;
+  margin-right: 1rem;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+`
+
+export const ProfileLink = styled.a`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: ${props => props.theme.textGray};
+  text-decoration: none;
+  
+  &:hover, &:active {
+    color: ${props => props.theme.textWhite};
+  }
+`

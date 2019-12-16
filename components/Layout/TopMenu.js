@@ -1,17 +1,23 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import {
-  Navbar, Nav, NavItem, NavButton, 
+  Navbar, Nav, NavItem, NavButton, AvatarContainer, ProfileLink,
 } from '../styles/Nav'
 import Backdrop from '../styles/Backdrop'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
+
 
 
 const TopMenu = () => {
   const router = useRouter()
   const isActive = route => route === router.pathname
   const [menuOpen, setMenuOpen] = useState(false)
+  const currentUser = useSelector(selectCurrentUser)
+  console.log(currentUser)
 
 
   const handleLinkClick = e => {
@@ -44,9 +50,22 @@ const TopMenu = () => {
           </Link>
         </NavItem>
         <NavItem>
-          <Link href="/group">
-            <a>Groups</a>
+          {currentUser && (
+
+          <Link href="/profile">
+            
+            <ProfileLink>
+              <AvatarContainer>
+                <img src={currentUser.avatar || ''} alt="User's avatar" />
+
+              </AvatarContainer>
+         
+
+              {currentUser.name || 'Not logged in'}
+
+            </ProfileLink>
           </Link>
+          )}
         </NavItem>
       </Nav>
       <NavButton type="button" className="onlyMobile" onClick={() => setMenuOpen(state => !state)}>X</NavButton>
