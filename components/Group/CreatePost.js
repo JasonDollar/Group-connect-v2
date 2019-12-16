@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import { addPost } from '../redux/posts/posts.actions'
+import { addPost } from '../../redux/posts/posts.actions'
 
 const CreatePost = () => {
   const [postContent, setPostContent] = useState('')
