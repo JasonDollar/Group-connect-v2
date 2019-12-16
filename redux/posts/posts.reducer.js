@@ -4,6 +4,7 @@ const initialState = {
   groupPosts: [],
   groupPostsLoading: false,
   groupPostsError: null,
+  singlePostLoading: false,
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -15,7 +16,13 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, groupPosts: [...payload], groupPostsLoading: false }
     case actionTypes.GET_GROUP_POSTS_FAILURE:
       return { ...state, groupPostsError: payload }
-
+    case actionTypes.ADD_POST: 
+      return { ...state, groupPosts: [...state.groupPosts, payload], singlePostLoading: false }
+    case actionTypes.ADD_POST_START: 
+      return { ...state, singlePostLoading: true }
+    case actionTypes.ADD_POST_FAILURE: 
+      return { ...state, singlePostLoading: false }
+      // add error message
     default:
       return state
   }

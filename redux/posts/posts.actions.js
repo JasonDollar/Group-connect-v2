@@ -29,3 +29,18 @@ export const getGroupPosts = groupId => async dispatch => {
     dispatch(getGroupPostsFailure(e.message))
   }
 }
+
+export const addPost = (groupId, text) => async dispatch => {
+  dispatch({ type: actionTypes.ADD_POST_START })
+  try {
+    const res = await axios.post(`${baseUrl}/api/v_1/posts/${groupId}/create`, { text }, { withCredentials: true })
+    console.log(res)
+    if (res.statusText !== 'Created') {
+      dispatch({ type: actionTypes.ADD_POST_FAILURE })
+    }
+    dispatch({ type: actionTypes.ADD_POST, payload: res.data.post })
+
+  } catch (e) {
+    dispatch({ type: actionTypes.ADD_POST_FAILURE })
+  }
+}
