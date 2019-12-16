@@ -19,7 +19,7 @@ const groupPage = ({ groupInfo }) => {
   dispatch(saveGroupPostsToStore(groupInfo.posts))
 
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <h1>{groupInfo && groupInfo.name}</h1>
       <CreatePost />
       <Posts />
