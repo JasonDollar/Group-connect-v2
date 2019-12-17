@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import { getAllGroups, getUserGroups } from '../../lib/api' // switch later for user's groups
+import { useSelector } from 'react-redux'
+import { getUserGroups } from '../../lib/api' // switch later for user's groups
 import SideProfile from '../../components/SideProfile/SideProfile'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
 
 const Container = styled.div`
   display: flex;
@@ -12,6 +14,7 @@ const Container = styled.div`
 
 const ProfilePage = props => {
   const [userGroups, setUserGroups] = useState([])
+  const currentUser = useSelector(selectCurrentUser)
   useEffect(() => {
     (async () => {
       const res = await getUserGroups()
@@ -22,7 +25,7 @@ const ProfilePage = props => {
   }, [])
   return (
     <Container>
-      <SideProfile />
+      <SideProfile user={currentUser} />
       <div>
   
         <h2>Groups with user as a member</h2>{/* make it shorter */}

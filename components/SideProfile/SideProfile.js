@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { selectCurrentUser } from '../../redux/user/user.selectors'
 
 
 const Container = styled.div`
@@ -10,29 +9,29 @@ const Container = styled.div`
   background: ${props => props.theme.orangeColor};
 `
 
-const SideProfile = () => {
+const SideProfile = ({ user }) => {
   const { loading, error } = useSelector(state => state.user)
-  const currentUser = useSelector(selectCurrentUser)
 
-  if (loading) {
-    return (
-      <Container>
-        Loading
-      </Container>
-    )
-  }
-  if (!currentUser) {
+
+  // if (loading) {
+  //   return (
+  //     <Container>
+  //       Loading
+  //     </Container>
+  //   )
+  // }
+  if (!user) {
     return (
       <Container>
         No currentUser
-        {error && error}
+        {/* {error && error} */}
       </Container>
     )
   }
 
   return (
     <Container>
-      {currentUser.name}
+      {user.name}
     </Container>
   )
 }
