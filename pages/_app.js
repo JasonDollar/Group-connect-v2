@@ -16,7 +16,7 @@ class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }
-    console.log('tokken_app', jwt)
+    
     if (jwt) {
       pageProps.userToken = jwt
     }

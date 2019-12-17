@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies'
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleGroupInfo } from '../../../lib/api'
@@ -11,6 +12,8 @@ import { selectCurrentUser } from '../../../redux/user/user.selectors'
 const groupPage = ({ groupInfo }) => {
   const [roleMember, setRoleMember] = useState(false)
   const dispatch = useDispatch()
+  const router = useRouter()
+  const { id: groupId } = router.query
   const currentUser = useSelector(selectCurrentUser)
   useEffect(() => {
     if ((groupInfo && groupInfo.membersLength) && currentUser) {
@@ -36,7 +39,7 @@ const groupPage = ({ groupInfo }) => {
       </div>
       {roleMember ? <div>You're an {roleMember}</div> : <button>JOIN GROUP (PLACEHOLDER)</button> }
       {roleMember && <CreatePost />}
-      <Posts />
+      <Posts groupId={groupId}/>
     </div>
   )
 }

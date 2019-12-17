@@ -17,8 +17,6 @@ const TopMenu = () => {
   const isActive = route => route === router.pathname
   const [menuOpen, setMenuOpen] = useState(false)
   const currentUser = useSelector(selectCurrentUser)
-  console.log(currentUser)
-
 
   const handleLinkClick = e => {
     if (menuOpen === false) return
