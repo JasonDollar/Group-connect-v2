@@ -31,8 +31,8 @@ const ProfilePage = props => {
           {userGroups && userGroups.map(item => (
             <li key={item.id}>
               <Link
-                as={`/group/${item.hashid}?n=${item.slug}`}
-                href="/group/[id]?n=slug"
+                as={`/group/${item.hashid}`}
+                href="/group/[id]"
               >
                 <a>
                   {item.name}

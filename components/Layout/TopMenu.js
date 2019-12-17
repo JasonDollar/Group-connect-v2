@@ -54,7 +54,7 @@ const TopMenu = () => {
             
             <ProfileLink>
               <AvatarContainer>
-                <img src={currentUser.avatar || ''} alt="User's avatar" />
+                <img src={currentUser.avatar || '/public/user.png'} alt="User's avatar" />
 
               </AvatarContainer>
          
