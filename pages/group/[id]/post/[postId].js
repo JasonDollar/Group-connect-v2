@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { getSinglePost } from '../../../../lib/api'
+import Comments from '../../../../components/Post/Comments'
 
 const PostPage = ({ post, createdInGroup }) => {
   console.log(createdInGroup)
@@ -23,6 +24,7 @@ const PostPage = ({ post, createdInGroup }) => {
           <a>{createdInGroup.name}</a>
         </Link>
       </p>
+      <Comments comments={post.comments} />
     </div>
   )
 }
