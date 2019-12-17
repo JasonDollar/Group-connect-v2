@@ -47,24 +47,31 @@ const TopMenu = () => {
             <a>Groups</a>
           </Link>
         </NavItem>
-        <NavItem>
-          {currentUser && (
+        {currentUser && (
+          <NavItem>
 
-          <Link href="/profile">
+            <Link href="/profile">
             
-            <ProfileLink>
-              <AvatarContainer>
-                <img src={currentUser.avatar || '/public/user.png'} alt="User's avatar" />
+              <ProfileLink>
+                <AvatarContainer>
+                  <img src={currentUser.avatar || '/user.png'} alt="User's avatar" />
 
-              </AvatarContainer>
+                </AvatarContainer>
          
 
-              {currentUser.name || 'Not logged in'}
+                {currentUser.name || 'Not logged in'}
 
-            </ProfileLink>
+              </ProfileLink>
+            </Link>
+          </NavItem>
+        )}
+        {!currentUser && (
+        <NavItem>
+          <Link href="/signup">
+            <a>Login</a>
           </Link>
-          )}
         </NavItem>
+        )}
       </Nav>
       <NavButton type="button" className="onlyMobile" onClick={() => setMenuOpen(state => !state)}>X</NavButton>
     </Navbar>
