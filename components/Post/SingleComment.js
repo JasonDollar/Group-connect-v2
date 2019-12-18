@@ -1,9 +1,18 @@
 import React from 'react'
+import Link from 'next/link'
 
 const SingleComment = ({ comment }) => (
   <div>
     <p>{comment.text}</p>
+    <Link
+      href="/profile/[userId]"
+      as={`/profile/${comment.createdBy.slug}`}
+    >
+      <a>
 Created by: {comment.createdBy.name}
+
+      </a>
+    </Link>
   </div>
 )
 

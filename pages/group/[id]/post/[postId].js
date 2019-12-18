@@ -4,7 +4,7 @@ import { getSinglePost } from '../../../../lib/api'
 import Comments from '../../../../components/Post/Comments'
 
 const PostPage = ({ post, createdInGroup }) => {
-  console.log(createdInGroup)
+  console.log(post)
   if (!post) {
     return (
       <div>
@@ -22,6 +22,15 @@ const PostPage = ({ post, createdInGroup }) => {
           as={`/group/${createdInGroup.hashid}`}
         >
           <a>{createdInGroup.name}</a>
+        </Link>
+      </p>
+      <p>
+        Created by:
+        <Link
+          href="/profile/[userId]"
+          as={`/profile/${post.createdBy.slug}`}
+        >
+          <a>{post.createdBy.name}</a>
         </Link>
       </p>
       <Comments comments={post.comments} />

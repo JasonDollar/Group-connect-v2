@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
 import { getUserInfo } from '../../lib/api'
 import SideProfile from '../../components/SideProfile/SideProfile'
 
@@ -17,11 +18,30 @@ const UserProfilePage = ({ user, ...props }) => {
       </Container>
     )
   }
-  console.log('profile', user)
+  // console.log('profile', user)
   return (
     <Container>
       <SideProfile user={user} />
-      user profile by id
+      <div>
+
+      <h2>user profile by id</h2>
+      <ul>
+  
+        {user.groupsMember && user.groupsMember.map(item => (
+          <li key={item.id}>
+            <Link
+              as={`/group/${item.hashid}`}
+              href="/group/[id]"
+            >
+              <a>
+                {item.name}
+              </a>
+            </Link>
+  
+          </li>
+        ))}
+      </ul>
+      </div>
     </Container>
   )
 }
