@@ -18,7 +18,7 @@ const UserProfilePage = ({ user, ...props }) => {
       </Container>
     )
   }
-  // console.log('profile', user)
+  
   return (
     <Container>
       <SideProfile user={user} />

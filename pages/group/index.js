@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import axios from 'axios'
 import { getAllGroups } from '../../lib/api'
 
 const GroupPage = props => (

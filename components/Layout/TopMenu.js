@@ -14,7 +14,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors'
 
 const TopMenu = () => {
   const router = useRouter()
-  const isActive = route => route === router.pathname
+  // const isActive = route => route === router.pathname
   const [menuOpen, setMenuOpen] = useState(false)
   const currentUser = useSelector(selectCurrentUser)
 
@@ -49,19 +49,15 @@ const TopMenu = () => {
         </NavItem>
         {currentUser && (
           <NavItem>
-
             <Link href="/profile">
-            
+
               <ProfileLink>
                 <AvatarContainer>
                   <img src={currentUser.avatar || '/user.png'} alt="User's avatar" />
-
                 </AvatarContainer>
-         
-
                 {currentUser.name || 'Not logged in'}
-
               </ProfileLink>
+
             </Link>
           </NavItem>
         )}

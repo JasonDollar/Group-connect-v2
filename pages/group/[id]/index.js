@@ -39,7 +39,7 @@ const groupPage = ({ groupInfo }) => {
       </div>
       {roleMember ? <div>You're an {roleMember}</div> : <button>JOIN GROUP (PLACEHOLDER)</button> }
       {roleMember && <CreatePost />}
-      <Posts groupId={groupId}/>
+      <Posts groupId={groupId} />
     </div>
   )
 }
@@ -47,7 +47,6 @@ const groupPage = ({ groupInfo }) => {
 export default groupPage
 
 groupPage.getInitialProps = async ctx => {
-  // console.log(req.headers.cookie)
   try {
     const { jwt } = parseCookies(ctx)
     const res = await getSingleGroupInfo(ctx.query.id, jwt)

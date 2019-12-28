@@ -4,7 +4,6 @@ import { getSinglePost } from '../../../../lib/api'
 import Comments from '../../../../components/Post/Comments'
 
 const PostPage = ({ post, createdInGroup }) => {
-  console.log(post)
   if (!post) {
     return (
       <div>
@@ -12,6 +11,7 @@ const PostPage = ({ post, createdInGroup }) => {
       </div>
     )
   }
+
   return (
     <div>
       <p>{post.text}</p>

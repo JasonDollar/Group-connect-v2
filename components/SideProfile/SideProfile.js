@@ -12,14 +12,6 @@ const Container = styled.div`
 const SideProfile = ({ user }) => {
   const { loading, error } = useSelector(state => state.user)
 
-
-  // if (loading) {
-  //   return (
-  //     <Container>
-  //       Loading
-  //     </Container>
-  //   )
-  // }
   if (!user) {
     return (
       <Container>
