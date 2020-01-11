@@ -42,11 +42,7 @@ const TopMenu = () => {
             <a>Groups</a>
           </Link>
         </NavItem>
-        <NavItem>
-          <Link href="/group">
-            <a>Groups</a>
-          </Link>
-        </NavItem>
+
         {currentUser && (
           <NavItem>
             <Link href="/profile">
@@ -62,11 +58,18 @@ const TopMenu = () => {
           </NavItem>
         )}
         {!currentUser && (
-        <NavItem>
-          <Link href="/signup">
-            <a>Login</a>
-          </Link>
-        </NavItem>
+          <>
+            <NavItem>
+              <Link href="/signup">
+                <a>Register</a>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link href="/signin">
+                <a>Login</a>
+              </Link>
+            </NavItem>
+          </>
         )}
       </Nav>
       <NavButton type="button" className="onlyMobile" onClick={() => setMenuOpen(state => !state)}>X</NavButton>
