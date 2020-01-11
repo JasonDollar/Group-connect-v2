@@ -14,6 +14,12 @@ const CreatePost = () => {
     e.preventDefault()
     if (postContent === '') return
     dispatch(addPost(id, postContent))
+
+  }
+  const checkButtonDisability = () => {
+    if (singlePostLoading) return true
+    if (postContent.length <= 0) return true
+    return false
   }
   return (
     <form onSubmit={handleSubmitNewPost}>
@@ -21,7 +27,7 @@ const CreatePost = () => {
         <label htmlFor="postContent">Create post:</label>
         <input type="text" id="postContent" value={postContent} onChange={e => setPostContent(e.target.value)} />
       </div>
-      <button type="submit" disabled={singlePostLoading}>Create</button>
+      <button type="submit" disabled={checkButtonDisability()}>Create</button>
     </form>
   )
 }
