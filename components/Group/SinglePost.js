@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
 
 const Container = styled.div`
   margin: 1rem 0;
@@ -34,3 +36,18 @@ const SinglePost = ({ post }) => (
 
 export default SinglePost
  
+
+SinglePost.propTypes = {
+  commentsLength: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  updatedAt: PropTypes.string.isRequired,
+  createdBy: PropTypes.shape({
+    _id: PropTypes.string,
+    id: PropTypes.string,
+    slug: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+}

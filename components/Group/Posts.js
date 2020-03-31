@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import SinglePost from './SinglePost'
@@ -28,3 +29,7 @@ const Posts = ({ groupId }) => {
 
 
 export default Posts
+
+Posts.propTypes = {
+  groupId: PropTypes.string.isRequired,
+}
